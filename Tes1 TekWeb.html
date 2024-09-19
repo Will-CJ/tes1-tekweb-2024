@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap demo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <style>
+            .rectangle{
+                height: 100vh;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="kanban-board d-flex flex-column">
+            <div class="bg-info col-12 p-3">
+                <h2 class="text-white bolder">Kanban View</h2>
+            </div>
+            <div class="d-flex flex-column text-bg-light">
+                <div class="d-flex flex-column col-5 p-3">
+                    <label for="inputTugas">Tugas</label>
+                    <input type="text" class="form-control" id="inputTugas">
+                    <label for="inputStatus">Status</label>
+                    <select class="form-select" id="inputStatus">
+                        <option selected disabled hidden>Select Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="planning">Planning</option>
+                        <option value="design">Design</option>
+                        <option value="development">Development</option>
+                        <option value="testing">Testing</option>
+                        <option value="resolved">Resolved</option>
+                    </select>
+                    <button type="button" onclick="tambah()" class="mt-2 col-3 btn btn-primary">Tambah</button>
+                </div>
+                <div class="d-flex justify-item-center p-3 col-12">
+                    <div class="rectangle border border-2 rounded d-flex flex-column align-items-center col-2 bg-white">
+                        <div class="text-bg-light w-75 border-bottom d-flex flex-column justify-content-center align-items-center">
+                            <div class="text-center fw-bold p-1">Pending</div>
+                        </div>
+                        <div id="pending" class="d-flex flex-column align-items-center py-4 px-3">
+                        </div>
+                    </div>
+                    <div class="rectangle border border-2 rounded d-flex flex-column align-items-center col-2 bg-white">
+                        <div class="text-bg-light w-75 border-bottom d-flex flex-column justify-content-center align-items-center">
+                            <div class="text-center fw-bold p-1">Planning</div>
+                        </div>
+                        <div id="planning" class="d-flex flex-column align-items-center py-4 px-3">
+                        </div>
+                    </div>
+                    <div class="rectangle border border-2 rounded d-flex flex-column align-items-center col-2 bg-white">
+                        <div class="text-bg-light w-75 border-bottom d-flex flex-column justify-content-center align-items-center">
+                            <div class="text-center fw-bold p-1">Design</div>
+                        </div>
+                        <div id="design" class="d-flex flex-column align-items-center py-4 px-3">
+                        </div>
+                    </div>
+                    <div class="rectangle border border-2 rounded d-flex flex-column align-items-center col-2 bg-white">
+                        <div class="text-bg-light w-75 border-bottom d-flex flex-column justify-content-center align-items-center">
+                            <div class="text-center fw-bold p-1">Development</div>
+                        </div>
+                        <div id="development" class="d-flex flex-column align-items-center py-4 px-3">
+                        </div>
+                    </div>
+                    <div class="rectangle border border-2 rounded d-flex flex-column align-items-center col-2 bg-white">
+                        <div class="text-bg-light w-75 border-bottom d-flex flex-column justify-content-center align-items-center">
+                            <div class="text-center fw-bold p-1">Testing</div>
+                        </div>
+                        <div id="testing" class="d-flex flex-column align-items-center py-4 px-3">
+                        </div>
+                    </div>
+                    <div class="rectangle border border-2 rounded d-flex flex-column align-items-center col-2 bg-white">
+                        <div class="text-bg-light w-75 border-bottom d-flex flex-column justify-content-center align-items-center">
+                            <div class="text-center fw-bold p-1">Resolved</div>
+                        </div>
+                        <div id="resolved" class="d-flex flex-column align-items-center py-4 px-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function() {
+                $(document).on("dblclick",".removeOnClick",function() {
+                    $(this).remove();
+                });
+            });
+        </script>
+        <script>
+            function tambah(){
+                let tugas = $('#inputTugas').val();
+                let status = $('#inputStatus').val();
+                console.log(tugas);
+                console.log(status);
+                $(`#${status}`).append(
+                    `
+                    <div class="removeOnClick p-3 border rounded my-2">
+                        ${tugas}
+                    </div>
+                    `
+                );
+            }
+        </script>
+    </body>
+</html>
